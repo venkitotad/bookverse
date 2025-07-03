@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import errorMiddleware from './middleware/errorMiddleware.js'
 import authRouter from './routes/auth.routes.js';
+
+
 const app = express();
 
 app.use(cors({
@@ -17,11 +19,11 @@ app.use(cookieParser());
 
 
 
-app.use('/api/auth', authRouter)
+app.use('/api/auth', authRouter);
 
-app.all('*', (req, res, next) => {
-  next(new AppError(`Route ${req.originalUrl} not found`, 404));
-});
+// app.all('*', (req, res, next) => {
+//   next(new AppError(`Route ${req.originalUrl} not found`, 404));
+// });
 
 app.use(errorMiddleware);
 

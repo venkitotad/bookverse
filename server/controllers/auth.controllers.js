@@ -60,7 +60,7 @@ export const signIn = asyncHandler(async (req, res) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "development",
+    secure: process.env.NODE_ENV === "production",
     sameSite: "Lax",
     maxAge: 60 * 60 * 1000, // 1 hour
   });
@@ -76,6 +76,10 @@ export const signIn = asyncHandler(async (req, res) => {
     token
   })
 
+});
+
+export const signOut = asyncHandler(async (req, res) =>{
+  
 });
 
 
