@@ -60,9 +60,6 @@ export const signIn = asyncHandler(async (req, res) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax",
-    maxAge: 60 * 60 * 1000, // 1 hour
   });
 
   res.status(200).json({
