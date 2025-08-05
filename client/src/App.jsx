@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
+import Feedback from "./pages/Feedback";
 
 const Layout = () => {
   return (
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <Login />,
+      },
+
+      {
+        path: "/feedback",
+        element: <Feedback />,
       },
     ],
   },

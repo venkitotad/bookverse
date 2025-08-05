@@ -42,10 +42,10 @@ export const signIn = asyncHandler(async (req, res) => {
   }
 
   const result = await pool.query('SELECT * FROM users WHERE email=$1', [email]);
-  
+
   if (result.rows.length === 0) {
-  throw new AppError('User not found', 404);
-}
+    throw new AppError('User not found', 404);
+  }
 
   const user = result.rows[0];
 
@@ -60,6 +60,7 @@ export const signIn = asyncHandler(async (req, res) => {
 
   res.cookie("token", token, {
     httpOnly: true,
+    
   });
 
   res.status(200).json({
@@ -75,8 +76,11 @@ export const signIn = asyncHandler(async (req, res) => {
 
 });
 
-export const signOut = asyncHandler(async (req, res) =>{
-  
+export const signOut = asyncHandler(async (req, res) => {
+  res.clearCookie("token", {
+  }).status(200).json({ message: "user logged out!.." });
+
+
 });
 
 
