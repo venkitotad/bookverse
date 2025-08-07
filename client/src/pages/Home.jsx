@@ -49,7 +49,7 @@ function Home() {
         </nav>
         <header class="container px-4 lg:flex mt-10 items-center h-full lg:mt-0">
           <div class="w-full">
-            <h1 class="text-4xl lg:text-6xl font-bold">Discover your<span class="text-orange-600"> next</span> favorite book with BookVerse.</h1>
+            <h1 class="text-4xl lg:text-6xl font-bold">Discover your<span class="text-orange-700"> next</span> favorite book with BookVerse.</h1>
             <div class="w-20 h-2 bg-stone-700 my-4"></div>
             <p class="text-xl mb-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae maiores neque eaque ea odit placeat, tenetur illum distinctio nulla voluptatum a corrupti beatae tempora aperiam quia id aliquam possimus aut.</p>
             <Link to='/about'>
