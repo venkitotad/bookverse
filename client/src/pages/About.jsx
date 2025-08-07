@@ -2,13 +2,22 @@ import React from "react";
 
 function About() {
   return (
-    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center px-4">
-      <div className="bg-white bg-opacity-70 backdrop-blur-md rounded-2xl shadow-lg p-10 max-w-3xl w-full text-center">
-        <h2 className="text-3xl font-bold text-stone-700 mb-4">About BookVerse</h2>
-        <p className="text-gray-700 text-lg leading-relaxed">
-          BookVerse is a platform built for book lovers. Whether you're a reader, writer,
-          or simply someone who loves stories — we've created a space for you. Our mission
-          is to connect people through books and make knowledge and stories accessible to all.
+    <div className="min-h-screen bg-white flex items-center justify-center px-4 py-16">
+      <div className="max-w-3xl w-full text-center space-y-6">
+        <h1 className="text-4xl font-bold text-gray-800">Welcome to BookVerse</h1>
+        <p className="text-gray-600 text-lg">
+          BookVerse is more than just a reading platform — it's a space where book lovers
+          gather, discover, and connect. Whether you're a casual reader or an avid explorer of stories,
+          we've built this place for you.
+        </p>
+        <p className="text-gray-600 text-lg">
+          Our goal is simple: make reading enjoyable and accessible for everyone. From
+          personalized recommendations to a vibrant community, we’re here to make your
+          reading journey better.
+        </p>
+        <p className="text-gray-600 text-lg">
+          Dive into a universe of books. Share your thoughts. Discover something new. 
+          This is BookVerse — your reading companion.
         </p>
       </div>
     </div>

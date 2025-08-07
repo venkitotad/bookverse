@@ -1,43 +1,37 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
-import React from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-// 1. Create Context
-export const AuthContext = createContext();
+// context
+const AuthContext = createContext();
 
-// 2. Provider Component
-export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("user")) || null;
-    } catch {
-      return null;
-    }
-    
-  });
+// helper function
+const getLocalUser = () => {
+  try {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored) : null;
+  } catch (err) {
+    console.error("Error parsing user from localStorage", err);
+    localStorage.removeItem("user");
+    return null;
+  }
+};
 
-  // 3. Login Function1
+// AuthProvider component
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(getLocalUser());
+
   const login = async (inputs) => {
-    try {
-      const res = await axios.post("/api/auth/signin", inputs);
-      setUser(res.data); // Adjust if your API returns differently
-    } catch (err) {
-      console.error("Login failed:", err);
-      throw err;
-    }
+    const res = await axios.post("/api/auth/signin", inputs);
+    setUser(res.data.data);
   };
 
-  // 4. Logout Function
-  const logout = async () => {
-    try {
-      await axios.post("/api/auth/signout");
-      setUser(null);
-    } catch (err) {
-      console.error("Logout failed:", err);
-    }
+  const logout = async() => {
+    await axios.post("/api/auth/signout")
+    setUser(null);
+    localStorage.removeItem("user");
   };
 
-  // 5. Store in localStorage
+  //  update localStorage on user change
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
@@ -47,9 +41,12 @@ export const AuthContextProvider = ({ children }) => {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+
+export const useAuth = () => useContext(AuthContext);
+export { AuthProvider };
