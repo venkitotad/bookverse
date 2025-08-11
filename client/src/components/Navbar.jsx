@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import img from "../assets/logo.png";
+import img from "../assets/logo2.png";
 import { useState } from "react";
 import React from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const {user, logout} = useAuth();
+  const { user, logout } = useAuth();
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
@@ -18,45 +19,46 @@ function Navbar() {
         <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-700">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+          {/* <Link to="/contact">Contact</Link> */}
           <Link to="/feedback">Feedback</Link>
+          <Link to="/feedback">Chat</Link>
+          
         </nav>
 
         {/* Search bar (desktop only) */}
-        <div className="hidden md:flex items-center space-x-2 ml-4">
-          <input
-            type="text"
-            placeholder="Search books..."
-            className="px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-500 transition text-sm w-48"
-          />
-          <button className="px-3 py-1.5 bg-stone-700 text-white rounded-md text-sm hover:bg-stone-800 transition">
-            Search
-          </button>
-        </div>
-        
-        
-      
+
+        {user ? (
+          <div className="hidden md:flex items-center space-x-2 ml-4">
+            <input
+              type="text"
+              placeholder="Search books..."
+              className="px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-500 transition text-sm w-48"
+            />
+            <button className="px-3 py-1.5 bg-orange-500 text-white rounded-md text-sm hover:bg-stone-800 transition cursor-pointer">
+              Search
+            </button>
+          </div>
+        ) : null}
+
         {/* Auth buttons */}
-       
+
         <div className="hidden md:flex gap-2">
-           {user?  <Link
-            to="/signup"
-            className="px-4 py-1.5 text-sm rounded-md border border-gray-300 hover:bg-gray-100"
-           onClick={logout}>
-            logout
-          </Link>:  <Link
-            to="/signin"
-            className="px-4 py-1.5 text-sm rounded-md text-black hover:bg-gray-200"
-          >
-            Login
-          </Link>}
-          {/* <Link
-            to="/signup"
-            className="px-4 py-1.5 text-sm rounded-md border border-gray-300 hover:bg-gray-100"
-          >
-            Sign Up
-          </Link> */}
-         
+          {user ? (
+            <Link
+              to="/signup"
+              className="px-4 py-1.5  rounded-md border border-gray-300 hover:bg-gray-100 text-sm font-medium text-gray-700"
+              onClick={logout}
+            >
+              logout
+            </Link>
+          ) : (
+            <Link
+              to="/signin"
+              className="px-4 py-1.5  rounded-md hover:bg-gray-200 text-sm font-medium text-gray-700"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Hamburger Icon (Mobile) */}
@@ -110,17 +112,22 @@ function Navbar() {
 
           {/* Auth */}
           <div className="flex gap-2 mt-2">
-           {user?  <Link
-            to="/signup"
-            className="px-4 py-1.5 text-sm rounded-md border border-gray-300 hover:bg-gray-100"
-          onClick={logout} >
-            logout
-          </Link>:  <Link
-            to="/signin"
-            className="px-4 py-1.5 text-sm rounded-md text-black hover:bg-gray-200"
-          >
-            Login
-          </Link>}
+            {user ? (
+              <Link
+                to="/signup"
+                className="px-4 py-1.5 text-sm rounded-md border border-gray-300 hover:bg-gray-100"
+                onClick={logout}
+              >
+                logout
+              </Link>
+            ) : (
+              <Link
+                to="/signin"
+                className="px-4 py-1.5 text-sm rounded-md text-black hover:bg-gray-200"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}

@@ -2,9 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
+import toast from 'react-hot-toast';
 
-function Login() {
+function SignIn() {
   const navigate = useNavigate();
   
   const {login} = useAuth()
@@ -25,14 +26,22 @@ function Login() {
   // console.log(inputs);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+   
+    
+    try {
+       e.preventDefault();
 
     // const res = await axios.post("/api/auth/signin", inputs, {
     //   withCredentials: true
     // });
     await login(inputs)
     navigate("/");
+    toast.success('Logged In!', { duration: 2000 })
     // console.log(res);
+    } catch (err) {
+      toast.error("Invalid credentials");
+      console.log(err);
+    }
   };
 
   return (
@@ -98,7 +107,7 @@ function Login() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="w-full py-2.5 bg-stone-800 text-white font-medium rounded-md hover:stone-500 transition cursor-pointer"
+              className="w-full py-2.5 bg-orange-500 text-white font-medium rounded-md hover:stone-500 transition cursor-pointer"
             >
               Sign In
             </button>
@@ -153,4 +162,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignIn;

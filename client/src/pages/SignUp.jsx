@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 
-function Register() {
+function SignUp() {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
@@ -23,10 +24,19 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
+    try {
     const res = await axios.post("/api/auth/signup", inputs);
     console.log(res);
+    toast.success("Registration successful! please login..");
     navigate("/signin");
+    
+    } catch (err) {
+      toast.error("soemthing went wrong try again")
+      console.log(err);
+    }
+
+  
   };
 
   return (
@@ -114,7 +124,7 @@ function Register() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full py-2.5 bg-stone-800 text-white font-medium rounded-md hover:bg-stone-50-600 transition cursor-pointer"
+            className="w-full py-2.5 bg-orange-500 text-white font-medium rounded-md hover:bg-stone-50-600 transition cursor-pointer"
           >
             Sign Up
           </button>
@@ -168,4 +178,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default  SignUp;

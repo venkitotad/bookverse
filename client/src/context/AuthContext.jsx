@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { createContext, useContext, useEffect, useState } from "react";
-
+import React, { createContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 // context
 const AuthContext = createContext();
 
@@ -18,23 +18,24 @@ const getLocalUser = () => {
 
 // AuthProvider component
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(getLocalUser());
+  const [user, setUser] = useState(getLocalUser);
 
   const login = async (inputs) => {
     const res = await axios.post("/api/auth/signin", inputs);
     setUser(res.data.data);
   };
 
-  const logout = async() => {
-    await axios.post("/api/auth/signout")
+  const logout = async () => {
+    await axios.post("/api/auth/signout");
     setUser(null);
     localStorage.removeItem("user");
+    toast.success("Logged out", { duration: 3000 });
   };
 
   //  update localStorage on user change
   useEffect(() => {
     if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user.name));
     } else {
       localStorage.removeItem("user");
     }
@@ -47,6 +48,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-
-export const useAuth = () => useContext(AuthContext);
 export { AuthProvider };
+
+export default AuthContext;
