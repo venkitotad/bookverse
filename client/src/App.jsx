@@ -6,8 +6,7 @@ import {
   Outlet,
 } from "react-router";
 import "./App.css";
-import { Toaster } from 'react-hot-toast';
-
+import { Toaster } from "react-hot-toast";
 
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -17,6 +16,9 @@ import Navbar from "./components/Navbar";
 import Feedback from "./pages/Feedback";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import BookList from "./pages/BookList";
+import { AuthProvider } from "./context/AuthContext";
+import { useAuth } from "./context/useAuth";
 
 const Layout = () => {
   return (
@@ -28,6 +30,11 @@ const Layout = () => {
   );
 };
 
+const HomeWithBooks = () => {
+  const { user } = useAuth();
+  return <>{user ? <BookList /> : <Home />}</>;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +42,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <HomeWithBooks />,
       },
 
       {
@@ -58,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/feedback",
         element: <Feedback />,
+      },
+      {
+        path: "/books",
+        element: <BookList />,
       },
     ],
   },

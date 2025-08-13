@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
+import { Eye, EyeOff } from "lucide-react";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ function SignUp() {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -24,19 +27,16 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-    const res = await axios.post("/api/auth/signup", inputs);
-    console.log(res);
-    toast.success("Registration successful! please login..");
-    navigate("/signin");
-    
+      const res = await axios.post("/api/auth/signup", inputs);
+      console.log(res);
+      toast.success("Registration successful! please login..");
+      navigate("/signin");
     } catch (err) {
-      toast.error("soemthing went wrong try again")
+      toast.error("soemthing went wrong try again");
       console.log(err);
     }
-
-  
   };
 
   return (
@@ -70,9 +70,10 @@ function SignUp() {
             <input
               type="text"
               name="name"
+              id="name"
               placeholder="Full Name"
               onChange={handleChange}
-              className="w-full pl-9 pr-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-gray-400 text-sm"
+              className="w-full pl-9 pr-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-100 placeholder:text-gray-400 text-sm"
             />
           </div>
 
@@ -92,9 +93,10 @@ function SignUp() {
             <input
               type="email"
               name="email"
+              id="email"
               placeholder="Email Address"
               onChange={handleChange}
-              className="w-full pl-9 pr-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-gray-400 text-sm"
+              className="w-full pl-9 pr-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-100 placeholder:text-gray-400 text-sm"
             />
           </div>
 
@@ -114,10 +116,24 @@ function SignUp() {
             <input
               type="password"
               name="password"
+              id="password"
               placeholder="Password"
               onChange={handleChange}
-              className="w-full pl-9 pr-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-gray-400 text-sm"
+              className="w-full pl-9 pr-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-100 placeholder:text-gray-400 text-sm"
             />
+
+            {/* Eye Icon */}
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+            >
+              {showPassword ? (
+                <Eye size={20} strokeWidth={2} />
+              ) : (
+                <EyeOff size={20} strokeWidth={2} />
+              )}
+            </button>
           </div>
 
           {/* Sign Up Button */}
@@ -168,7 +184,7 @@ function SignUp() {
           Already have an account?{" "}
           <Link
             to="/signin"
-            className="text-purple-600 hover:underline font-medium"
+            className="text-orange-600 hover:underline font-medium"
           >
             Sign In
           </Link>
@@ -178,4 +194,4 @@ function SignUp() {
   );
 }
 
-export default  SignUp;
+export default SignUp;

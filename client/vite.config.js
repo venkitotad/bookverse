@@ -9,6 +9,7 @@ export default defineConfig({
   fontFamily: {
     sans: ['Inter', 'sans-serif'],
   },
+  
 
   server: {
     proxy: {

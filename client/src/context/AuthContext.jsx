@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
     await axios.post("/api/auth/signout");
     setUser(null);
     localStorage.removeItem("user");
-    toast.success("Logged out", { duration: 3000 });
+    toast.success("Logged out");
   };
 
   //  update localStorage on user change
