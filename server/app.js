@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import errorMiddleware from './middleware/errorMiddleware.js'
 import authRouter from './routes/auth.routes.js';
+import bookRouter from './routes/book.routes.js';
 
 
 const app = express();
@@ -22,6 +23,7 @@ app.get("/",(req, res) =>{
 }) 
 
 app.use('/api/auth', authRouter);
+app.use('/api/books', bookRouter)
 
 // app.all('*', (req, res, next) => {
 //   next(new AppError(`Route ${req.originalUrl} not found`, 404));

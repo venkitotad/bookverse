@@ -1,45 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import axios from "axios"
 function BookList() {
-  const books = [
-    {
-      book_id: 1,
-      title: "The Great Gatsby",
-      author_name: "F. Scott Fitzgerald",
-      cover_url: "https://images-na.ssl-images-amazon.com/images/I/81xXAy6tgfL.jpg",
-      average_rating: 4.5,
-      total_reviews: 1250,
-      isbn: "9780743273565",
-    },
-    {
-      book_id: 2,
-      title: "1984",
-      author_name: "George Orwell",
-      cover_url: "https://images-na.ssl-images-amazon.com/images/I/71kxa1-0AfL.jpg",
-      average_rating: 4.7,
-      total_reviews: 2100,
-      isbn: "9780451524935",
-    },
-    {
-      book_id: 3,
-      title: "To Kill a Mockingbird",
-      author_name: "Harper Lee",
-      cover_url: "https://images-na.ssl-images-amazon.com/images/I/81Otwki3IxL.jpg",
-      average_rating: 4.8,
-      total_reviews: 1840,
-      isbn: "9780061120084",
-    },
-    {
-      book_id: 4,
-      title: "Pride and Prejudice",
-      author_name: "Jane Austen",
-      cover_url: "https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg",
-      average_rating: 4.6,
-      total_reviews: 980,
-      isbn: "9781503290563",
-    },
-  ];
+  const [books, setBooks] = useState([]);
+  
+  const fetchBooks = async() =>{
+    const res = await axios.get("/api/books/");
+    setBooks(res.data.data);    
+  }
+  
+  useEffect(() =>{
+      fetchBooks();
+  },[])
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
@@ -66,7 +39,7 @@ function BookList() {
                 <h2 className="text-sm font-bold truncate">{book.title}</h2>
                 <p className="text-xs text-gray-600">{book.author_name}</p>
                 <p className="text-yellow-500 text-xs mt-1">
-                  ⭐ {Number(book.average_rating || 0).toFixed(1)} (
+                  ⭐ {Number(book.avg_rating || 0).toFixed(1)} (
                   {book.total_reviews || 0} reviews)
                 </p>
                 <Link
