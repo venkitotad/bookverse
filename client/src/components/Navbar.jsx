@@ -7,6 +7,8 @@ import React from "react";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-md border-b border-white/20 shadow-sm">
@@ -22,7 +24,6 @@ function Navbar() {
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
-          <Link to="/feedback">Feedback</Link>
           <Link to="/chat">Chat</Link>
         </nav>
 
@@ -51,14 +52,34 @@ function Navbar() {
         )}
 
         {/* Auth buttons */}
-        <div className="hidden md:flex">
+       <div className="hidden md:flex relative">
           {user ? (
-            <button
-              onClick={logout}
-              className="px-4 py-1.5 rounded-md border border-gray-300 hover:bg-gray-100 text-sm font-medium text-gray-700"
-            >
-              Logout
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 hover:ring-2 hover:ring-orange-400 cursor-pointer" 
+              >
+                {/* Initial (fallback if no avatar) */}
+                {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg py-1">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={logout}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <Link
               to="/signin"
