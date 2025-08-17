@@ -5,9 +5,22 @@ import cors from 'cors';
 import errorMiddleware from './middleware/errorMiddleware.js'
 import authRouter from './routes/auth.routes.js';
 import bookRouter from './routes/book.routes.js';
-
+import {rateLimit} from 'express-rate-limit';
 
 const app = express();
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
+  standardHeaders: true, 
+  legacyHeaders: false, 
+  message: {
+    success: false,
+    message: "Too many requests, try again later."
+  }
+});
+
+app.use(limiter);
 
 app.use(cors({
   origin: "http://localhost:5173",
@@ -24,10 +37,6 @@ app.get("/",(req, res) =>{
 
 app.use('/api/auth', authRouter);
 app.use('/api/books', bookRouter)
-
-// app.all('*', (req, res, next) => {
-//   next(new AppError(`Route ${req.originalUrl} not found`, 404));
-// });
 
 app.use(errorMiddleware);
 
