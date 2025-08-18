@@ -11,7 +11,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 export const signUp = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-
+  
+   if(!name || !email || !password){
+    throw new AppError('All feilds are required!..');
+   }
 
   const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 

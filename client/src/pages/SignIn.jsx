@@ -31,7 +31,7 @@ function SignIn() {
       navigate("/");
       toast.success("Logged In!", { duration: 2000 });
     } catch (err) {
-      toast.error("Invalid credentials");
+      toast.error(err.response.data.message);
       console.log(err);
     }
   };

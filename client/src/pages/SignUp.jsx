@@ -34,7 +34,7 @@ function SignUp() {
       toast.success("Registration successful! please login..");
       navigate("/signin");
     } catch (err) {
-      toast.error("soemthing went wrong try again");
+      toast.error(err.response.data.message);
       console.log(err);
     }
   };
