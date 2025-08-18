@@ -11,12 +11,12 @@ const app = express();
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max: 100, 
+  max: 5, 
   standardHeaders: true, 
   legacyHeaders: false, 
   message: {
     success: false,
-    message: "Too many requests, try again later."
+    message: "Too many attempts, try again later."
   }
 });
 
@@ -35,7 +35,7 @@ app.get("/",(req, res) =>{
   res.send("helo");
 }) 
 
-app.use('/api/auth', authRouter);
+app.use('/api/auth', limiter, authRouter);
 app.use('/api/books', bookRouter)
 
 app.use(errorMiddleware);
