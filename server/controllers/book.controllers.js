@@ -15,3 +15,12 @@ export const getBooks = asyncHandler(async (req, res) =>{
         data: data.rows
     })
 })
+
+export const addBook = asyncHandler(async (req, res) =>{
+    const {title, isbn, category, author_name, comment, rating} = req.body;
+    if(!title || !isbn || !category || !author_name || !comment || !rating){
+        throw new AppError('Please fill all feilds!..', 400);
+    }
+    
+    const book = pool.query('');
+})
