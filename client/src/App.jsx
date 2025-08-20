@@ -19,8 +19,10 @@ import SignUp from "./pages/SignUp";
 import BookList from "./pages/BookList";
 import PageNotFound from "./pages/PageNotFound";
 import { useAuth } from "./context/useAuth";
+import ReviewBook from "./pages/ReviewBook";
 
 const Layout = () => {
+  
   return (
     <>
       <Navbar />
@@ -35,7 +37,18 @@ const HomeWithBooks = () => {
   return <>{user ? <BookList /> : <Home />}</>;
 };
 
+const ProtectedReviewBook = () =>{
+  const {user} = useAuth();
+  return <>{user ? <ReviewBook/> : <SignIn/>}</>
+}
+
+const ProtectedBook = () => {
+  const { user } = useAuth();
+  return <>{user ? <BookList /> : <Home />}</>;
+};
+
 const router = createBrowserRouter([
+  
   {
     path: "/",
     element: <Layout />,
@@ -68,12 +81,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <BookList />,
+        element: <ProtectedBook/>,
       },
+      
       {
-        path:"*",
-        element: <PageNotFound/>
-      }
+        path: "/review",
+        element: <ProtectedReviewBook/>,
+      },
+      
+      {
+        path: "*",
+        element: <PageNotFound />,
+      },
     ],
   },
 ]);

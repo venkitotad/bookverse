@@ -25,6 +25,7 @@ function Navbar() {
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/chat">Chat</Link>
+          <Link to="/review">Review Book</Link>
         </nav>
 
         {/* Search & Sort (Desktop only) */}
