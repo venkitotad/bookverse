@@ -14,7 +14,7 @@ function Home() {
     <div className="min-h-screen bg-[#F0F4F8] flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between px-4 sm:px-6 lg:px-20 py-12 pt-24 sm:pt-28 gap-12">
       {/* Left Content */}
       <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1D2D50]">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#151f35]">
           Discover your <span className="text-[#FF9A00]">next</span> favorite
           book with BookVerse.
         </h1>
