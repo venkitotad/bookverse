@@ -22,6 +22,7 @@ function Footer() {
         <div className="mt-4 flex justify-center gap-x-6 text-sm text-gray-600">
             <Link to="/about" className="hover:text-[#FF9A00] transition-colors">About</Link>
             <Link to="/contact" className="hover:text-[#FF9A00] transition-colors">Contact</Link>
+             <Link to="/feedback" className="hover:text-[#FF9A00] transition-colors">Feedback</Link>
             <Link to="/privacy" className="hover:text-[#FF9A00] transition-colors">Privacy Policy</Link>
         </div>
       </div>

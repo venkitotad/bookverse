@@ -104,7 +104,7 @@ function SignUp() {
           <button
             type="submit"
             // TWEAK: Added hover transform for a subtle "lift" effect
-            className="w-full py-2.5 bg-[#FF9A00] text-white font-semibold rounded-md hover:bg-orange-500 transform hover:-translate-y-0.5 transition-all duration-300"
+            className="w-full py-2.5 bg-[#FF9A00] text-white font-semibold rounded-md hover:bg-orange-500 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
             Sign Up
           </button>
@@ -119,7 +119,7 @@ function SignUp() {
         {/* Google Sign Up Button */}
         <button
           type="button"
-          className="w-full flex items-center justify-center py-2.5 border border-gray-300 bg-white hover:bg-gray-50 rounded-md text-sm text-[#1D2D50] font-medium transform hover:-translate-y-0.5 transition-all duration-300"
+          className="w-full flex items-center justify-center py-2.5 border border-gray-300 bg-white hover:bg-gray-50 rounded-md text-sm text-[#1D2D50] font-medium transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
         >
           <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
             <path
