@@ -20,6 +20,7 @@ import BookList from "./pages/BookList";
 import PageNotFound from "./pages/PageNotFound";
 import { useAuth } from "./context/useAuth";
 import ReviewBook from "./pages/ReviewBook";
+import Profile from "./pages/Profile";
 
 const Layout = () => {
   
@@ -90,6 +91,11 @@ const router = createBrowserRouter([
       },
       
       {
+        path: "/profile",
+        element: <Profile/>  
+      },
+      
+      {
         path: "*",
         element: <PageNotFound />,
       },
@@ -100,7 +106,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <Toaster position="bottom-center" />
+      <Toaster position="top-center" />
       <div className="container">
         <RouterProvider router={router} />
       </div>
