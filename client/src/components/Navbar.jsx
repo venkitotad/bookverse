@@ -31,7 +31,7 @@ function Navbar() {
         {/* Search & Sort (Desktop only) */}
         {user && (
           <div className="hidden md:flex items-center gap-3 ml-4">
-            <select className="border px-3 py-1.5 rounded-md text-sm bg-white shadow-sm">
+            {/* <select className="border px-3 py-1.5 rounded-md text-sm bg-white shadow-sm">
               <option value="title-asc">Title (A–Z)</option>
               <option value="title-desc">Title (Z–A)</option>
               <option value="date-new">Newest First</option>
@@ -39,7 +39,7 @@ function Navbar() {
               <option value="rating-high">Rating (High → Low)</option>
               <option value="rating-low">Rating (Low → High)</option>
             </select>
-            
+             */}
             {/* search bar  */}
             <input
               type="text"
@@ -127,14 +127,14 @@ function Navbar() {
 
             {user && (
               <>
-                <select className="w-full border px-3 py-1.5 rounded-md text-sm">
+                {/* <select className="w-full border px-3 py-1.5 rounded-md text-sm">
                   <option value="title-asc">Title (A–Z)</option>
                   <option value="title-desc">Title (Z–A)</option>
                   <option value="date-new">Newest First</option>
                   <option value="date-old">Oldest First</option>
                   <option value="rating-high">Rating (High → Low)</option>
                   <option value="rating-low">Rating (Low → High)</option>
-                </select>
+                </select> */}
                 <div className="flex gap-2">
                   <input
                     type="text"
