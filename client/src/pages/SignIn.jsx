@@ -5,11 +5,6 @@ import { useAuth } from "../context/useAuth";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
 
-// The "Modern Clarity" Palette:
-// Primary Text: #1D2D50 (Deep Indigo)
-// Accent: #FF9A00 (Vibrant Orange)
-// Subtle Background: #F0F4F8 (Cool Light Gray)
-// White: #FFFFFF
 
 function SignIn() {
   const navigate = useNavigate();
@@ -21,6 +16,8 @@ function SignIn() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -34,7 +31,7 @@ function SignIn() {
     try {
       await login(inputs);
       navigate("/");
-      toast.success("Logged In!", { duration: 2000 });
+      toast.success("Logged In!", { duration: 1000 });
     } catch (err) {
       toast.error(err.response.data.message);
       console.log(err);
