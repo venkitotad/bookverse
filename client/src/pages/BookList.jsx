@@ -29,7 +29,7 @@ function BookList() {
   return (
     <div className="min-h-screen bg-[#F0F4F8] px-4 py-8 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl -mt-11 font-bold mb-8 text-center text-[#1D2D50]">
+        <h1 className="text-3xl mt-11 font-bold mb-8 text-center text-[#1D2D50]">
           📚 All Books
         </h1>
 
