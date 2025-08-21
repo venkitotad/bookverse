@@ -21,7 +21,9 @@ function SignUp() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  
   const handleChange = (e) => {
     setInputs((prev) => ({
       ...prev,
