@@ -14,7 +14,8 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  
+  
   return (
     // Consistent styling with a clean, blurred background
     <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/70 shadow-sm">
@@ -130,6 +131,7 @@ function Navbar() {
                 to="/signin"
                 className="w-full block text-center px-4 py-2 text-sm bg-[#FF9A00] text-white font-semibold rounded-md hover:bg-orange-500"
                 onClick={() => setIsOpen(false)}
+                
               >
                 Sign In
               </Link>

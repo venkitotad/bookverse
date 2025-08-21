@@ -58,7 +58,7 @@ export const signIn = asyncHandler(async (req, res) => {
     throw new AppError('Invlaid details try again!..', 400);
   }
 
-  const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ userId: user.id}, JWT_SECRET, { expiresIn: "1h" });
 
 
   res.cookie("token", token, {

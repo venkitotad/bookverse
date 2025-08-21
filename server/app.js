@@ -6,6 +6,7 @@ import errorMiddleware from './middleware/errorMiddleware.js'
 import authRouter from './routes/auth.routes.js';
 import bookRouter from './routes/book.routes.js';
 import { rateLimit } from 'express-rate-limit';
+import testRouter from './routes/test.js';
 
 const app = express();
 
@@ -37,6 +38,8 @@ app.get("/", (req, res) => {
 
 app.use('/api/auth', limiter, authRouter);
 app.use('/api/books', bookRouter)
+
+app.use('/api/test', testRouter);
 
 app.use(errorMiddleware);
 

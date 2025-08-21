@@ -48,6 +48,11 @@ const ProtectedBook = () => {
   return <>{user ? <BookList /> : <Home />}</>;
 };
 
+const ProtectedProfile = () => {
+  const { user } = useAuth();
+  return <>{user ? <Profile /> : <Home />}</>;
+};
+
 const router = createBrowserRouter([
   
   {
@@ -92,7 +97,7 @@ const router = createBrowserRouter([
       
       {
         path: "/profile",
-        element: <Profile/>  
+        element: <ProtectedProfile/>  
       },
       
       {

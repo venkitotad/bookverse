@@ -10,7 +10,7 @@ function ReviewBook() {
   return (
     // FIXED: Added top padding (pt-24) to push the form down below the fixed navbar
     <div className="min-h-screen bg-[#F0F4F8] flex items-center justify-center px-4 py-12 pt-24 sm:pt-28">
-      <form className="max-w-2xl w-full mx-auto p-8 bg-white rounded-xl shadow-lg space-y-6">
+      <form className="max-w-2xl w-full mx-auto p-8 bg-white rounded-xl shadow-sm space-y-6">
         {/* Changed: Heading to deep indigo */}
         <h2 className="text-3xl font-extrabold text-center text-[#1D2D50]">
           Add New Review
