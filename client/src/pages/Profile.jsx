@@ -13,13 +13,6 @@ function Profile() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  // Dummy data for user's reviews - replace with actual API call
-  const userReviews = [
-    { id: 1, title: "The Silent Patient", rating: 5 },
-    { id: 2, title: "Sapiens: A Brief History of Humankind", rating: 4 },
-    { id: 3, title: "Clean Code", rating: 5 },
-  ];
-
   const handleLogout = () => {
     logout();
     navigate("/");
@@ -35,8 +28,12 @@ function Profile() {
             {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
           </div>
           <div className="text-center sm:text-left">
-            <h1 className="text-3xl font-bold text-[#1D2D50]">{user?.name || "User"}</h1>
-            <p className="text-md text-gray-600">{user?.email || "user@example.com"}</p>
+            <h1 className="text-3xl font-bold text-[#1D2D50]">
+              {user?.name || "User"}
+            </h1>
+            <p className="text-md text-gray-600">
+              {user?.email || "user@example.com"}
+            </p>
           </div>
           <div className="sm:ml-auto flex gap-2 mt-4 sm:mt-0">
             <button className="flex items-center gap-2 bg-[#F0F4F8] text-[#1D2D50] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
@@ -54,20 +51,6 @@ function Profile() {
         </div>
 
         {/* User's Reviews Section */}
-        <div className="mt-8 bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-[#1D2D50] flex items-center gap-2 mb-4">
-            <BookOpen size={20} />
-            My Reviews
-          </h2>
-          <ul>
-            {userReviews.map((review) => (
-              <li key={review.id} className="flex justify-between items-center py-2 border-b last:border-b-0">
-                <span className="text-[#1D2D50] font-medium">{review.title}</span>
-                <span className="text-[#FF9A00] font-semibold">Rating: {review.rating}/5</span>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </div>
   );
