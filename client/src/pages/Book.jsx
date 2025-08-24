@@ -29,7 +29,14 @@ function Book() {
   
   
   return (
-    <>Book</>
+    <>
+   <div className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-3xl font-bold text-[#1D2D50]">📘 Book Details Page</h1>
+      <p className="text-xl mt-4 text-gray-700">Book ID: <span className="font-mono">{bookId}</span></p>
+    </div>
+    
+    
+    </>
   )
 }
 

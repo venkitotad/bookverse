@@ -21,6 +21,7 @@ import PageNotFound from "./pages/PageNotFound";
 import { useAuth } from "./context/useAuth";
 import ReviewBook from "./pages/ReviewBook";
 import Profile from "./pages/Profile";
+import  Book  from "./pages/Book";
 
 const Layout = () => {
   
@@ -43,15 +44,20 @@ const ProtectedReviewBook = () =>{
   return <>{user ? <ReviewBook/> : <SignIn/>}</>
 }
 
-const ProtectedBook = () => {
+const ProtectedBooks = () => {
   const { user } = useAuth();
-  return <>{user ? <BookList /> : <Home />}</>;
+  return <>{user ? <BookList /> : <SignIn />}</>;
 };
 
 const ProtectedProfile = () => {
   const { user } = useAuth();
   return <>{user ? <Profile /> : <Home />}</>;
 };
+
+const ProtectedBook = () =>{
+  const {user} = useAuth();
+  return <>{user ? <Book/> : <SignIn/>}</>
+}
 
 const router = createBrowserRouter([
   
@@ -87,7 +93,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <ProtectedBook/>,
+        element: <ProtectedBooks/>,
       },
       
       {
@@ -99,7 +105,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <ProtectedProfile/>  
       },
-      
+      {
+        path: "/books/:bookId",
+        element: <ProtectedBook/>
+      },
       {
         path: "*",
         element: <PageNotFound />,

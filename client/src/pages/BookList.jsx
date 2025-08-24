@@ -13,12 +13,8 @@ function BookList() {
     setError(false);
     try {
       const res = await axios.get("/api/books/");
-      setTimeout(() => {
         setBooks(res.data.data);
-        setLoading(false)
-      }, 3000);
-      
-
+        setLoading(false)      
     } catch (err) {
       console.error("Failed to fetch books:", err);
       setError(true);
