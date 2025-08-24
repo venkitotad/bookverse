@@ -25,7 +25,7 @@ function About() {
         {/* Text Content */}
         <div className="space-y-6 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl font-bold text-[#1D2D50] leading-tight">
-            Welcome to <span className="text-[#FF9A00]">BookVerse</span>
+            About to <span className="text-[#FF9A00]">BookVerse</span>
           </h1>
           <p className="text-gray-600 text-lg">
             BookVerse is more than just a reading platform — it's a space where book lovers

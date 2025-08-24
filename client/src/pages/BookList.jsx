@@ -13,13 +13,17 @@ function BookList() {
     setError(false);
     try {
       const res = await axios.get("/api/books/");
-      setBooks(res.data.data);
+      setTimeout(() => {
+        setBooks(res.data.data);
+        setLoading(false)
+      }, 3000);
+      
+
     } catch (err) {
       console.error("Failed to fetch books:", err);
       setError(true);
-    } finally {
       setLoading(false);
-    }
+    } 
   };
 
   useEffect(() => {
@@ -35,7 +39,7 @@ function BookList() {
 
         {/* LOADING */}
         {loading && (
-          <p className="text-center text-[#1D2D50] text-lg font-medium">
+          <p className="text-center text-[#ff1818] text-lg font-medium">
             Loading...
           </p>
         )}
