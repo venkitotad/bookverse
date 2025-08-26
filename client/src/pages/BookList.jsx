@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 function BookList() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -13,13 +12,13 @@ function BookList() {
     setError(false);
     try {
       const res = await axios.get("/api/books/");
-        setBooks(res.data.data);
-        setLoading(false)      
+      setBooks(res.data.data);
+      setLoading(false);
     } catch (err) {
       console.error("Failed to fetch books:", err);
       setError(true);
       setLoading(false);
-    } 
+    }
   };
 
   useEffect(() => {
@@ -27,15 +26,16 @@ function BookList() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F0F4F8] px-4 py-8 sm:p-8">
+    <div className="min-h-screen bg-[#F9FAFB] px-4 py-8 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl mt-11 font-bold mb-8 text-center text-[#1D2D50]">
+        {/* Heading */}
+        <h1 className="text-3xl mt-11 font-bold mb-8 text-center text-gray-900">
           📚 All Books
         </h1>
 
         {/* LOADING */}
         {loading && (
-          <p className="text-center text-[#ff1818] text-lg font-medium">
+          <p className="text-center text-gray-700 text-lg font-medium">
             Loading...
           </p>
         )}
@@ -58,8 +58,9 @@ function BookList() {
             {books.map((book) => (
               <div
                 key={book.book_id}
-                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col group"
+                className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden flex flex-col group border border-gray-200"
               >
+                {/* Cover */}
                 <div className="relative w-full h-56 sm:h-64">
                   <img
                     src={
@@ -70,9 +71,11 @@ function BookList() {
                     className="w-full h-full object-cover"
                   />
                 </div>
+
+                {/* Info */}
                 <div className="p-4 flex flex-col flex-grow">
                   <h2
-                    className="text-base font-bold text-[#1D2D50] truncate"
+                    className="text-base font-semibold text-gray-900 truncate"
                     title={book.title}
                   >
                     {book.title}
@@ -80,13 +83,13 @@ function BookList() {
                   <p className="text-sm text-gray-600 truncate">
                     {book.author_name}
                   </p>
-                  <p className="text-[#FF9A00] text-xs font-semibold mt-1">
+                  <p className="text-xs font-medium text-gray-700 mt-1">
                     ⭐ {Number(book.avg_rating || 0).toFixed(1)} (
                     {book.total_reviews || 0} reviews)
                   </p>
                   <Link
                     to={`/books/${book.book_id}`}
-                    className="mt-4 w-full bg-[#FF9A00] text-white text-sm font-semibold px-4 py-2 rounded-md text-center hover:bg-orange-500 transition-colors"
+                    className="mt-4 w-full bg-black text-white text-sm font-medium px-4 py-2 rounded-md text-center hover:bg-gray-800 transition-colors"
                   >
                     Read More
                   </Link>

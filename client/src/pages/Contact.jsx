@@ -1,11 +1,5 @@
 import React from "react";
 
-// The "Modern Clarity" Palette:
-// Primary Text: #1D2D50 (Deep Indigo)
-// Accent: #FF9A00 (Vibrant Orange)
-// Subtle Background: #F0F4F8 (Cool Light Gray)
-// White: #FFFFFF
-
 function Contact() {
   return (
     // Changed: Background to subtle cool gray and added padding for the navbar
@@ -97,7 +91,7 @@ function Contact() {
         <div className="mt-10">
           <button
             type="submit"
-            className="block w-full rounded-md bg-[#FF9A00] px-3.5 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-orange-500  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+            className="block w-full rounded-md bg-[#333] px-3.5 py-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-black  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
             Send Message
           </button>

@@ -22,5 +22,8 @@ export const addBook = asyncHandler(async (req, res) =>{
         throw new AppError('Please fill all feilds!..', 400);
     }
     
-    const book = pool.query('');
+    const user_id = req.user.id;
+    const category_id = r
+    
+    const data = pool.query('');
 })

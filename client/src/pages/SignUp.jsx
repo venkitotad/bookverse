@@ -1,163 +1,97 @@
-import axios from "axios";
 import React, { useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
-
-// The "Modern Clarity" Palette:
-// Primary Text: #1D2D50 (Deep Indigo)
-// Accent: #FF9A00 (Vibrant Orange)
-// Subtle Background: #F0F4F8 (Cool Light Gray)
-// White: #FFFFFF
+import { User, Lock, Mail } from "lucide-react";
 
 function SignUp() {
-  const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
-  const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  
-  const handleChange = (e) => {
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("/api/auth/signup", inputs);
-      console.log(res);
-      toast.success("Registration successful! Please login.");
-      navigate("/signin");
-    } catch (err) {
-      toast.error(err.response.data.message);
-      console.log(err);
-    }
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    setIsValid(value.length >= 8);
   };
 
   return (
-    // FIXED: Added top padding (pt-24) to push the form down below the fixed navbar
-    <div className="min-h-screen flex items-center justify-center bg-[#F0F4F8] pt-24 sm:pt-28 py-12 px-4">
-      <div className="w-full max-w-sm bg-white shadow-lg rounded-2xl px-6 py-8">
-        <h2 className="text-2xl font-bold text-center text-[#1D2D50] mb-1">
-          Create Account
-        </h2>
-        <p className="text-center text-sm text-gray-600 mb-6">
-          Join us and start your journey!
+    <div className="min-h-screen mt-3.5 bg-gray-100 flex items-center justify-center px-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 w-full max-w-sm">
+        
+        {/* Header */}
+        <div className="flex items-center gap-2 mb-2">
+          <User size={20} />
+          <h2 className="text-lg font-semibold">Create new account</h2>
+        </div>
+        <p className="text-gray-500 text-sm mb-6">
+          Start now
         </p>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          {/* Name */}
-          <div>
+        {/* Username */}
+        <div className="mb-4">
+          <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2">
+            <User size={16} className="text-gray-400 mr-2" />
             <input
               type="text"
-              name="name"
-              id="name"
-              placeholder="Full Name"
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500/50 placeholder:text-gray-400 text-sm text-[#1D2D50]"
-              required
+              placeholder="Username"
+              className="w-full outline-none text-sm"
             />
           </div>
-
-          {/* Email */}
-          <div>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email Address"
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500/50 placeholder:text-gray-400 text-sm text-[#1D2D50]"
-              required
-            />
-          </div>
-
-          {/* Password */}
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              id="password"
-              placeholder="Password"
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500/50 placeholder:text-gray-400 text-sm text-[#1D2D50]"
-              required
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-[#1D2D50]"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
-
-          {/* Sign Up Button */}
-          <button
-            type="submit"
-            // TWEAK: Added hover transform for a subtle "lift" effect
-            className="w-full py-2.5 bg-[#FF9A00] text-white font-semibold rounded-md hover:bg-orange-500 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-          >
-            Sign Up
-          </button>
-        </form>
-
-        <div className="flex items-center my-5">
-          <hr className="flex-grow border-gray-300" />
-          <span className="mx-4 text-gray-400 text-xs">OR</span>
-          <hr className="flex-grow border-gray-300" />
         </div>
 
-        {/* Google Sign Up Button */}
-        <button
-          type="button"
-          className="w-full flex items-center justify-center py-2.5 border border-gray-300 bg-white hover:bg-gray-50 rounded-md text-sm text-[#1D2D50] font-medium transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-        >
-          <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
-            <path
-              fill="#4285F4"
-              d="M22.56,12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26,1.37-1.04,2.53-2.21,3.31v2.77h3.57c2.08-1.92,3.28-4.74,3.28-8.09Z"
+        {/* Email */}
+        <div className="mb-4">
+          <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2">
+            <Mail size={16} className="text-gray-400 mr-2" />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full outline-none text-sm"
             />
-            <path
-              fill="#34A853"
-              d="M12,23c2.97,0,5.46-.98,7.28-2.66l-3.57-2.77c-.98.66-2.23,1.06-3.71,1.06-2.86,0-5.29-1.93-6.16-4.53H2.18v2.84C3.99,20.53,7.7,23,12,23Z"
+          </div>
+        </div>
+
+        {/* Password */}
+        <div className="mb-2">
+          <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2">
+            <Lock size={16} className="text-gray-400 mr-2" />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              className="w-full outline-none text-sm"
             />
-            <path
-              fill="#FBBC05"
-              d="M5.84,14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43,8.55,1,10.22,1,12s.43,3.45,1.18,4.93l3.66-2.84Z"
-            />
-            <path
-              fill="#EA4335"
-              d="M12,5.16c1.55,0,2.95.54,4.08,1.58l3.17-3.17C17.45,1.99,14.97,1,12,1,7.7,1,3.99,3.47,2.18,7.07l3.66,2.84c.87-2.6,3.3-4.53,6.16-4.53Z"
-            />
-          </svg>
+          </div>
+        </div>
+        {!isValid && password && (
+          <p className="text-red-500 text-xs flex items-center mt-1">
+            ● Password must be 8+ characters
+          </p>
+        )}
+
+        {/* Register button */}
+        <button className="mt-6 w-full bg-black text-white font-medium py-2 rounded-lg hover:bg-gray-900 transition cursor-pointer">
+          Sign Up
+        </button>
+
+        {/* Google button */}
+        <button className="mt-3 w-full border border-gray-300 bg-white text-gray-700 font-medium py-2 rounded-lg hover:bg-gray-50 transition flex items-center justify-center gap-2 cursor-pointer">
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+            className="w-5 h-5"
+          />
           Sign up with Google
         </button>
 
-        {/* TWEAK: Increased top margin for better spacing */}
-        <p className="text-center text-sm text-gray-600 mt-8">
-          Already have an account?{" "}
-          <Link
-            to="/signin"
-            className="text-[#FF9A00] hover:underline font-semibold"
-          >
-            Sign In
+        {/* Login link */}
+        <div className="text-center mt-3">
+          <Link to="/signin" className="text-sm text-black underline">
+            Or SigIn
           </Link>
-        </p>
+        </div>
       </div>
     </div>
   );
 }
 
 export default SignUp;
-
