@@ -41,7 +41,7 @@ function SignIn() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 w-full max-w-sm">
+      <div className="bg-white rounded-sm shadow-sm border border-gray-200 p-8 w-full max-w-sm">
         
         {/* Header */}
         <div className="flex items-center gap-2 mb-2">

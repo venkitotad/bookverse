@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="w-full bg-[#F0F4F8] py-6 px-4 sm:px-6 lg:px-8 border-t border-gray-200/70">
+    <footer className="w-full bg-[#fff] py-6 px-4 sm:px-6 lg:px-8 border-t border-gray-200/70">
       <div className="max-w-7xl mx-auto text-center space-y-4">
         {/* Brand + Copyright */}
         <p className="text-sm text-[#1D2D50]">

@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <div className="min-h-screen bg-[#F0F4F8] flex items-center justify-center px-6 py-16 pt-28 text-center">
+    <div className="min-h-screen bg-white flex items-center justify-center px-6 py-16 pt-28 text-center">
       <div className="max-w-4xl w-full space-y-8">
         {/* Heading */}
         <h1 className="text-4xl md:text-5xl font-bold text-[#111] leading-tight">

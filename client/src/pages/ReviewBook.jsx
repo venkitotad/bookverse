@@ -7,157 +7,104 @@ function ReviewBook() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F0F4F8] flex items-center justify-center px-4 py-12 pt-24 sm:pt-28">
+    <div className="min-h-screen bg-transparent flex justify-center items-start pt-16 px-4 mt-6">
       <form
         onSubmit={handleSubmit}
-        className="max-w-2xl w-full mx-auto bg-white rounded-2xl shadow-md p-10 space-y-8"
+        className="w-full max-w-4xl bg-white rounded-sm border border-gray-200 shadow-sm p-8 grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        {/* Heading */}
-        <div className="text-center space-y-2">
-          <h2 className="text-3xl font-extrabold text-[#1D2D50]">
-            Add New Review
-          </h2>
-          <p className="text-gray-500 text-sm">
-            Share your thoughts about the book with others
-          </p>
-        </div>
+        {/* Left Column: Book Info */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-[#1D2D50]">Add a Review</h2>
+          <p className="text-gray-600 text-sm">Share your thoughts about the book</p>
 
-        {/* Book Details */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Book Title */}
           <div>
-            <label
-              htmlFor="title"
-              className="block text-sm font-semibold text-[#1D2D50] mb-1.5"
-            >
+            <label htmlFor="title" className="block mb-1 font-semibold text-[#1D2D50]">
               Book Title
             </label>
             <input
               id="title"
               type="text"
-              placeholder="e.g., The Great Gatsby"
+              placeholder="The Great Gatsby"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 
-                focus:ring-2 focus:ring-[#1D2D50] focus:border-[#1D2D50] 
-                placeholder:text-gray-400 text-sm text-[#1D2D50] transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none"
             />
           </div>
 
-          {/* Author */}
           <div>
-            <label
-              htmlFor="author_name"
-              className="block text-sm font-semibold text-[#1D2D50] mb-1.5"
-            >
+            <label htmlFor="author_name" className="block mb-1 font-semibold text-[#1D2D50]">
               Author
             </label>
             <input
               id="author_name"
               type="text"
-              placeholder="e.g., F. Scott Fitzgerald"
+              placeholder="F. Scott Fitzgerald"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 
-                focus:ring-2 focus:ring-[#1D2D50] focus:border-[#1D2D50] 
-                placeholder:text-gray-400 text-sm text-[#1D2D50] transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none"
             />
           </div>
 
-          {/* Category */}
           <div>
-            <label
-              htmlFor="category_name"
-              className="block text-sm font-semibold text-[#1D2D50] mb-1.5"
-            >
+            <label htmlFor="category_name" className="block mb-1 font-semibold text-[#1D2D50]">
               Category
             </label>
             <select
               id="category_name"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 
-                focus:ring-2 focus:ring-[#1D2D50] focus:border-[#1D2D50] 
-                text-sm text-[#1D2D50] bg-white transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none"
             >
               <option value="" disabled>
                 Select a category
               </option>
-              <option value="1" disabled>
-                1
-              </option>
-              <option value="2" disabled>
-                2
-              </option>
+              <option value="1">Fiction</option>
+              <option value="2">Non-fiction</option>
             </select>
           </div>
 
-          {/* ISBN */}
           <div>
-            <label
-              htmlFor="isbn"
-              className="block text-sm font-semibold text-[#1D2D50] mb-1.5"
-            >
+            <label htmlFor="isbn" className="block mb-1 font-semibold text-[#1D2D50]">
               ISBN
             </label>
             <input
               id="isbn"
               type="text"
-              placeholder="e.g., 9780743273565"
+              placeholder="9780743273565"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 
-                focus:ring-2 focus:ring-[#1D2D50] focus:border-[#1D2D50] 
-                placeholder:text-gray-400 text-sm text-[#1D2D50] transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none"
             />
           </div>
         </div>
 
-        {/* Review Section */}
-        <div className="space-y-6 pt-6 border-t border-gray-200">
-          {/* Rating */}
+        {/* Right Column: Review */}
+        <div className="space-y-4">
           <div>
-            <label
-              htmlFor="rating"
-              className="block text-sm font-semibold text-[#1D2D50] mb-1.5"
-            >
+            <label htmlFor="rating" className="block mb-1 font-semibold text-[#1D2D50]">
               Your Rating (1-5)
             </label>
             <input
               id="rating"
               type="number"
-              placeholder="e.g., 4"
               min="1"
               max="5"
+              placeholder="4"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 
-                focus:ring-2 focus:ring-[#1D2D50] focus:border-[#1D2D50] 
-                placeholder:text-gray-400 text-sm text-[#1D2D50] transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none"
             />
           </div>
 
-          {/* Review */}
           <div>
-            <label
-              htmlFor="comment"
-              className="block text-sm font-semibold text-[#1D2D50] mb-1.5"
-            >
+            <label htmlFor="comment" className="block mb-1 font-semibold text-[#1D2D50]">
               Your Review
             </label>
             <textarea
               id="comment"
-              rows="5"
+              rows="8"
               placeholder="Write your thoughts about the book..."
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 
-                focus:ring-2 focus:ring-[#1D2D50] focus:border-[#1D2D50] 
-                placeholder:text-gray-400 text-sm text-[#1D2D50] transition"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-800 focus:outline-none"
             ></textarea>
           </div>
-        </div>
 
-        {/* Submit */}
-        <div className="text-center">
           <button
             type="submit"
-            className="w-full bg-[#1D2D50] hover:bg-[#16213E] text-white 
-              font-semibold py-3 rounded-lg shadow-sm 
-              focus:ring-2 focus:ring-offset-2 focus:ring-[#1D2D50] 
-              transition-colors duration-200"
+            className="w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 rounded-md transition-colors cursor-pointer"
           >
             Submit Review
           </button>

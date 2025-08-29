@@ -58,7 +58,7 @@ function BookList() {
             {books.map((book) => (
               <div
                 key={book.book_id}
-                className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden flex flex-col group border border-gray-200"
+                className="bg-white rounded-md shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group border border-gray-200"
               >
                 {/* Cover */}
                 <div className="relative w-full h-56 sm:h-64">

@@ -3,14 +3,6 @@ import { useAuth } from '../context/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, Edit, LogOut, Star, MessageSquare } from 'lucide-react';
 
-// The "Modern Clarity" Palette:
-// Primary Text: #1D2D50 (Deep Indigo)
-// Accent: #FF9A00 (Vibrant Orange)
-// Subtle Background: #F0F4F8 (Cool Light Gray)
-// White: #FFFFFF
-
-// --- Mock Data for Demonstration ---
-// In a real app, you would fetch this data from your API
 const userStats = {
   reviewsWritten: 12,
   booksAdded: 5,
@@ -41,7 +33,6 @@ const userReviews = [
   },
 ];
 
-
 function Profile() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -52,29 +43,28 @@ function Profile() {
   };
 
   if (!user) {
-    // Optional: Add a loading state or redirect if user is not available
     return (
-        <div className="min-h-screen bg-[#F0F4F8] flex items-center justify-center">
-            <p className="text-[#1D2D50]">Loading profile...</p>
-        </div>
-    )
+      <div className="min-h-screen bg-[#F0F4F8] flex items-center justify-center">
+        <p className="text-[#1D2D50]">Loading profile...</p>
+      </div>
+    );
   }
 
   return (
-    // Main container with padding for the navbar
     <div className="min-h-screen bg-[#F0F4F8] pt-28 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
+
         {/* Profile Header */}
-        <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col sm:flex-row items-center gap-6">
+        <div className="bg-white rounded-xl shadow-md p-6 md:p-8 flex flex-col sm:flex-row items-center gap-6">
           <div className="w-24 h-24 rounded-full bg-[#1D2D50] flex items-center justify-center text-white text-4xl font-bold ring-4 ring-white ring-offset-2 ring-offset-[#F0F4F8]">
             {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
           </div>
           <div className="text-center sm:text-left">
             <h1 className="text-3xl font-bold text-[#1D2D50]">{user.name || 'User'}</h1>
-            <p className="text-md text-gray-600">{user.email || 'user@example.com'}</p>
+            <p className="text-gray-600">{user.email || 'user@example.com'}</p>
           </div>
           <div className="sm:ml-auto flex gap-2 mt-4 sm:mt-0">
-            <button className="flex items-center gap-2 bg-[#F0F4F8] text-[#1D2D50] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
+            <button className="flex items-center gap-2 bg-gray-100 text-[#1D2D50] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors">
               <Edit size={16} />
               Edit
             </button>
@@ -90,30 +80,30 @@ function Profile() {
 
         {/* User Stats Section */}
         <div>
-            <h2 className="text-2xl font-bold text-[#1D2D50] mb-4">My Stats</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-white p-6 rounded-xl shadow-lg flex items-center gap-4">
-                    <BookOpen className="text-[#FF9A00]" size={28}/>
-                    <div>
-                        <p className="text-2xl font-bold text-[#1D2D50]">{userStats.reviewsWritten}</p>
-                        <p className="text-sm text-gray-500">Reviews Written</p>
-                    </div>
-                </div>
-                 <div className="bg-white p-6 rounded-xl shadow-lg flex items-center gap-4">
-                    <Star className="text-[#FF9A00]" size={28}/>
-                    <div>
-                        <p className="text-2xl font-bold text-[#1D2D50]">{userStats.averageRating}</p>
-                        <p className="text-sm text-gray-500">Average Rating</p>
-                    </div>
-                </div>
-                 <div className="bg-white p-6 rounded-xl shadow-lg flex items-center gap-4">
-                    <MessageSquare className="text-[#FF9A00]" size={28}/>
-                    <div>
-                        <p className="text-2xl font-bold text-[#1D2D50]">{userStats.booksAdded}</p>
-                        <p className="text-sm text-gray-500">Books Added</p>
-                    </div>
-                </div>
+          <h2 className="text-2xl font-bold text-[#1D2D50] mb-4">My Stats</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
+              <BookOpen className="text-[#1D2D50]" size={28}/>
+              <div>
+                <p className="text-2xl font-bold text-[#1D2D50]">{userStats.reviewsWritten}</p>
+                <p className="text-sm text-gray-500">Reviews Written</p>
+              </div>
             </div>
+            <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
+              <Star className="text-[#1D2D50]" size={28}/>
+              <div>
+                <p className="text-2xl font-bold text-[#1D2D50]">{userStats.averageRating}</p>
+                <p className="text-sm text-gray-500">Average Rating</p>
+              </div>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
+              <MessageSquare className="text-[#1D2D50]" size={28}/>
+              <div>
+                <p className="text-2xl font-bold text-[#1D2D50]">{userStats.booksAdded}</p>
+                <p className="text-sm text-gray-500">Books Added</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* User's Reviews Section */}
@@ -122,13 +112,13 @@ function Profile() {
           <div className="space-y-4">
             {userReviews.length > 0 ? (
               userReviews.map((review) => (
-                <div key={review.book_id} className="bg-white p-6 rounded-xl shadow-lg">
+                <div key={review.book_id} className="bg-white p-6 rounded-xl shadow-md">
                   <div className="flex items-center justify-between mb-2">
                     <div>
                       <h3 className="font-bold text-[#1D2D50]">{review.title}</h3>
                       <p className="text-sm text-gray-500">by {review.author}</p>
                     </div>
-                    <div className="flex items-center gap-1 bg-[#FF9A00] text-white px-2 py-1 rounded-md text-sm">
+                    <div className="flex items-center gap-1 bg-[#1D2D50] text-white px-2 py-1 rounded-md text-sm">
                       <Star size={14} />
                       <span>{review.rating}</span>
                     </div>
@@ -137,15 +127,16 @@ function Profile() {
                 </div>
               ))
             ) : (
-              <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="bg-white p-6 rounded-xl shadow-md text-center">
                 <p className="text-gray-600">You haven't written any reviews yet.</p>
-                <Link to="/review" className="mt-4 inline-block bg-[#FF9A00] text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors">
+                <Link to="/review" className="mt-4 inline-block bg-[#1D2D50] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#16213E] transition-colors">
                   Write a Review
                 </Link>
               </div>
             )}
           </div>
         </div>
+
       </div>
     </div>
   );
