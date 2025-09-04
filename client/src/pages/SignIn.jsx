@@ -46,7 +46,7 @@ function SignIn() {
         {/* Header */}
         <div className="flex items-center gap-2 mb-2">
           <User size={20} />
-          <h2 className="text-lg font-semibold">Welcome Back</h2>
+          <h2 className="text-lg font-semibold">...</h2>
         </div>
         <p className="text-gray-500 text-sm mb-6">
           Sign in to continue

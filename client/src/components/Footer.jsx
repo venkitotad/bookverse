@@ -7,7 +7,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto text-center space-y-4">
         {/* Brand + Copyright */}
         <p className="text-sm text-[#1D2D50]">
-          © {new Date().getFullYear()}{" "}
+          &copy; {new Date().getFullYear()}{" "}
           <Link
             to="/"
             className="font-semibold text-[#1D2D50] hover:text-[#16213E] transition-colors"
