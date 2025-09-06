@@ -23,7 +23,5 @@ export const addBook = asyncHandler(async (req, res) =>{
     }
     
     // const user_id = req.user.id;
-    // const category_id = 
-    
-    // const data = pool.query('');
+    // const category_id 
 })

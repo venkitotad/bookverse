@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import toast from "react-hot-toast";
+import {toast} from "sonner";
 import { Eye, EyeOff, User, Lock } from "lucide-react";
 
 function SignIn() {
@@ -25,19 +25,36 @@ function SignIn() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await login(inputs);
-      navigate("/");
-      toast.success("Logged In!", { duration: 1000 });
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed");
-      console.log(err);
-    } finally {
-      setLoading(false);
+  e.preventDefault();
+  setLoading(true);
+  try {
+    await login(inputs);
+     toast.success("Logged In", {
+         description: "browse books now!",
+         duration: 3000,
+         icon: "✅",
+         style: {
+           backgroundColor: "#fff",
+           color: "black",
+         },
+       });
+    navigate("/");
+  } catch (err) {
+    const msg = err.response?.data?.message;
+    if (err.response?.status === 401) {
+      toast.error("Invalid Credentials", {
+        description: "Email or password is incorrect.",
+      });
+    } else {
+      toast.error("Login Failed", {
+        description: msg || "Something went wrong. Please try again.",
+      });
     }
-  };
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
@@ -95,7 +112,7 @@ function SignIn() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-6 w-full bg-black text-white font-medium py-2 rounded-lg hover:bg-gray-900 transition cursor-pointer disabled:bg-gray-400"
+            className="mt-6 w-full bg-indigo-700 text-white font-medium py-2 rounded-lg hover:bg-indigo-900 transition cursor-pointer disabled:bg-gray-400"
           >
             {loading ? "Signing In..." : "Sign In"}
           </button>

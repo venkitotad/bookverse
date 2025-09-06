@@ -6,7 +6,7 @@ import {
   Outlet,
 } from "react-router";
 import "./App.css";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -120,7 +120,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <Toaster position="top-center" />
+      <Toaster position="top-right" />
       <div className="container">
         <RouterProvider router={router} />
       </div>

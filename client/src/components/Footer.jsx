@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="w-full bg-[#fff] py-6 px-4 sm:px-6 lg:px-8 border-t border-gray-200/70">
-      <div className="max-w-7xl mx-auto text-center space-y-4">
+    <footer className="w-full bg-white py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-around gap-4 md:gap-0">
         {/* Brand + Copyright */}
-        <p className="text-sm text-[#1D2D50]">
+        <p className="text-sm text-[#1D2D50] text-center md:text-left">
           &copy; {new Date().getFullYear()}{" "}
           <Link
             to="/"
@@ -17,30 +17,18 @@ function Footer() {
           . All rights reserved.
         </p>
 
-        {/* Footer Nav */}
-        <div className="flex justify-center gap-x-6 text-sm text-gray-600">
-          <Link
-            to="/about"
-            className="hover:text-[#1D2D50] transition-colors"
-          >
+        {/* Footer Navigation */}
+        <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm text-gray-600">
+          <Link to="/about" className="hover:text-[#1D2D50] transition-colors">
             About
           </Link>
-          <Link
-            to="/contact"
-            className="hover:text-[#1D2D50] transition-colors"
-          >
+          <Link to="/contact" className="hover:text-[#1D2D50] transition-colors">
             Contact
           </Link>
-          <Link
-            to="/feedback"
-            className="hover:text-[#1D2D50] transition-colors"
-          >
+          <Link to="/feedback" className="hover:text-[#1D2D50] transition-colors">
             Feedback
           </Link>
-          <Link
-            to="/privacy"
-            className="hover:text-[#1D2D50] transition-colors"
-          >
+          <Link to="/privacy" className="hover:text-[#1D2D50] transition-colors">
             Privacy Policy
           </Link>
         </div>

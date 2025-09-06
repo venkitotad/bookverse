@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User, Lock, Mail } from "lucide-react";
-import toast from "react-hot-toast";
+import {toast} from "sonner";
 import axios from "axios";
 
 function SignUp() {
@@ -23,21 +23,36 @@ function SignUp() {
     }));
 
     if (name === "password") {
-      setIsValid(value.length >= 8);
+      setIsValid(value.length >= 4);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/signup", inputs);
-      console.log(res);
-      toast.success("Registration successful! Please login.");
-      navigate("/signin");
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Something went wrong");
-      console.log(err);
-    }
+  const res = await axios.post("/api/auth/signup", inputs);
+  console.log(res);
+   toast.success("Registerd!", {
+       description: "Registerd successfully please login!",
+       duration: 2000,
+       icon: "✅",
+       style: {
+         backgroundColor: "#fff",
+         color: "black",
+       },
+     });
+  navigate("/signin");
+} catch (err) {
+  if (err.response?.status === 409) {
+    toast.error("User already exists", {
+      description: "Try signing in instead.",
+    });
+  } else {
+    toast.error("Signup Failed", {
+      description: err.response?.data?.message || "Please try again later.",
+    });
+  }
+}
   };
 
   return (
@@ -107,7 +122,7 @@ function SignUp() {
           {/* Register button */}
           <button
             type="submit"
-            className="mt-6 w-full bg-black text-white font-medium py-2 rounded-lg hover:bg-gray-900 transition cursor-pointer"
+            className="mt-6 w-full bg-indigo-700 text-white font-medium py-2 rounded-lg hover:bg-indigo-900 transition cursor-pointer"
           >
             Sign Up
           </button>

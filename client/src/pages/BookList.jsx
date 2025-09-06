@@ -13,10 +13,10 @@ function BookList() {
     try {
       const res = await axios.get("/api/books/");
       setBooks(res.data.data);
-      setLoading(false);
     } catch (err) {
       console.error("Failed to fetch books:", err);
       setError(true);
+    } finally {
       setLoading(false);
     }
   };
@@ -28,47 +28,55 @@ function BookList() {
   return (
     <div className="min-h-screen bg-[#F9FAFB] px-4 py-8 sm:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <h1 className="text-3xl mt-11 font-bold mb-8 text-center text-gray-900">
+        <h1 className="text-3xl mt-12 font-bold mb-8 text-center text-gray-900">
           📚 All Books
         </h1>
 
-        {/* LOADING */}
+        {/* Loading */}
         {loading && (
-          <p className="text-center text-gray-700 text-lg font-medium">
-            Loading...
-          </p>
+          <div className="flex justify-center items-center py-20">
+            <div className="w-12 h-12 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
+          </div>
         )}
 
-        {/* ERROR */}
-        {error && (
-          <p className="text-center text-red-500 text-sm">
-            Failed to load books. Please try again later.
-          </p>
+        {/* Error */}
+        {error && !loading && (
+          <div className="text-center py-20">
+            <p className="text-red-500 text-lg mb-4">
+              Failed to load books. Please try again.
+            </p>
+            <button
+              onClick={fetchBooks}
+              className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+            >
+              Retry
+            </button>
+          </div>
         )}
 
-        {/* NO BOOKS */}
+        {/* No books */}
         {!loading && !error && books.length === 0 && (
-          <p className="text-center text-gray-600">No books available yet.</p>
+          <p className="text-center text-gray-600 py-20">No books available yet.</p>
         )}
 
-        {/* BOOKS GRID */}
+        {/* Books grid */}
         {!loading && !error && books.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
             {books.map((book) => (
               <div
                 key={book.book_id}
-                className="bg-white rounded-md shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group border border-gray-200"
+                className="bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow overflow-hidden flex flex-col border border-gray-200 group"
               >
                 {/* Cover */}
-                <div className="relative w-full h-56 sm:h-64">
+                <div className="relative w-full h-56 sm:h-64 overflow-hidden">
                   <img
                     src={
                       book.cover_url ||
                       `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`
                     }
                     alt={book.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </div>
 
@@ -80,16 +88,20 @@ function BookList() {
                   >
                     {book.title}
                   </h2>
-                  <p className="text-sm text-gray-600 truncate">
+                  <p
+                    className="text-sm text-gray-600 truncate"
+                    title={book.author_name}
+                  >
                     {book.author_name}
                   </p>
                   <p className="text-xs font-medium text-gray-700 mt-1">
                     ⭐ {Number(book.avg_rating || 0).toFixed(1)} (
                     {book.total_reviews || 0} reviews)
                   </p>
+
                   <Link
                     to={`/books/${book.book_id}`}
-                    className="mt-4 w-full bg-black text-white text-sm font-medium px-4 py-2 rounded-md text-center hover:bg-gray-800 transition-colors"
+                    className="mt-4 w-full  text-indigo-500 text-sm font-medium px-4 py-2 rounded text-center  border-1 transition-colors"
                   >
                     Read More
                   </Link>

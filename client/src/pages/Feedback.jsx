@@ -64,7 +64,7 @@ function Feedback() {
         <div className="mt-10">
           <button
             type="submit"
-            className="block w-full rounded-md bg-black px-3.5 py-3 text-center text-sm font-semibold text-white shadow-sm  focus-visible:outline-offset-2 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+            className="block w-full rounded-md bg-indigo-700 px-3.5 py-3 text-center text-sm font-semibold text-white shadow-sm  focus-visible:outline-offset-2 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
           >
             Submit Feedback
           </button>
